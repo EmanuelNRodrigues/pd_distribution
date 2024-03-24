@@ -31,6 +31,7 @@ gem 'bootsnap', require: false
 
 # Flexible authentication solution for Rails with Warden [https://rubydoc.info/github/heartcombo/devise]
 gem 'devise', '~> 4.9', '>= 4.9.3'
+gem 'devise-jwt', '~> 0.11.0'
 
 # Simple, efficient background processing for Ruby. [https://github.com/sidekiq/sidekiq/wiki]
 # gem 'sidekiq', '~> 7.1', '>= 7.1.2'
