@@ -33,6 +33,9 @@ gem 'bootsnap', require: false
 gem 'devise', '~> 4.9', '>= 4.9.3'
 gem 'devise-jwt', '~> 0.11.0'
 
+# Middleware that will make Rack-based apps CORS compatible.
+gem 'rack-cors', '~> 1.1', '>= 1.1.1'
+
 # Simple, efficient background processing for Ruby. [https://github.com/sidekiq/sidekiq/wiki]
 # gem 'sidekiq', '~> 7.1', '>= 7.1.2'
 
