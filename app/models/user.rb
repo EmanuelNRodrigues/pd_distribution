@@ -27,7 +27,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
 
-  has_many :address_informations
+  has_many :address_informations, dependent: :delete_all
   validates :email, uniqueness: { case_sensitive: false, message: 'O Email já se encontra atribuído' }
 
   # Method to remove email requirement on Devise
