@@ -25,6 +25,6 @@
 #  fk_rails_...  (sender_id => address_informations.id)
 #
 class Order < ApplicationRecord
-belongs_to :recipient, class_name: 'AddressInformation'
-belongs_to :sender, class_name: 'AddressInformation'
+  belongs_to :recipient, class_name: 'AddressInformation'
+  belongs_to :sender, class_name: 'AddressInformation'
 end

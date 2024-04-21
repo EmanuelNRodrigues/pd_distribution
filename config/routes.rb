@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, path: 'users',
+  devise_for :users, path: '',
                      defaults: { format: :json },
                      path_names: {
                        sign_in: 'login',
@@ -11,8 +11,10 @@ Rails.application.routes.draw do
                        registrations: 'users/registrations'
                      }
 
-  resources :order do
-    resources :sender, only: [:show, :create, :update, :destroy]    
+  resources :user do
+    resources :order do
+      resources :recipient, only: %i[show create update]
+    end
   end
 
   get 'up' => 'rails/health#show', as: :rails_health_check

@@ -25,6 +25,6 @@
 #
 class AddressInformation < ApplicationRecord
     belongs_to :user, optional: true
-    has_many :sender_address, :class_name => 'Order', :foreign_key => 'sender_id'
-    has_many :recipient_address, :class_name => 'Order', :foreign_key => 'recipient_id'
+    has_many :sender_orders, :class_name => 'Order', :foreign_key => 'sender_id'
+    has_many :recipient_orders, :class_name => 'Order', :foreign_key => 'recipient_id'
 end

@@ -5,7 +5,7 @@ class CreateOrders < ActiveRecord::Migration[7.1]
       t.string :payement_value
       t.string :services
       t.integer :packets_count
-      t.string :comments
+      t.text :comments
       t.datetime :collected_at
 
       t.references :sender, index: true, foreign_key: { to_table: :address_informations }, null: false

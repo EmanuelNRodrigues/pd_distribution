@@ -17,12 +17,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_21_155437) do
   create_table "address_informations", force: :cascade do |t|
     t.string "name", null: false
     t.string "address1", null: false
-    t.string "address2", null: false
+    t.string "address2"
     t.integer "postal_code1", null: false
     t.integer "postal_code2", null: false
     t.string "city", null: false
     t.string "phone_number"
-    t.string "type", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
