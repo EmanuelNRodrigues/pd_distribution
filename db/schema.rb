@@ -22,7 +22,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_21_155437) do
     t.integer "postal_code2", null: false
     t.string "city", null: false
     t.string "phone_number"
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_address_informations_on_user_id"
@@ -33,14 +33,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_21_155437) do
     t.string "payement_value"
     t.string "services"
     t.integer "packets_count"
-    t.string "comments"
+    t.text "comments"
     t.datetime "collected_at"
-    t.bigint "sender_id", null: false
-    t.bigint "recipient_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "recipient_address_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["recipient_id"], name: "index_orders_on_recipient_id"
-    t.index ["sender_id"], name: "index_orders_on_sender_id"
+    t.index ["recipient_address_id"], name: "index_orders_on_recipient_address_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,6 +59,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_21_155437) do
   end
 
   add_foreign_key "address_informations", "users"
-  add_foreign_key "orders", "address_informations", column: "recipient_id"
-  add_foreign_key "orders", "address_informations", column: "sender_id"
+  add_foreign_key "orders", "address_informations", column: "recipient_address_id"
+  add_foreign_key "orders", "users"
 end

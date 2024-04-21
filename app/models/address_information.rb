@@ -4,16 +4,15 @@
 #
 #  id           :bigint           not null, primary key
 #  address1     :string           not null
-#  address2     :string           not null
+#  address2     :string
 #  city         :string           not null
 #  name         :string           not null
 #  phone_number :string
 #  postal_code1 :integer          not null
 #  postal_code2 :integer          not null
-#  type         :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  user_id      :bigint
+#  user_id      :bigint           not null
 #
 # Indexes
 #
@@ -25,6 +24,5 @@
 #
 class AddressInformation < ApplicationRecord
     belongs_to :user, optional: true
-    has_many :sender_orders, :class_name => 'Order', :foreign_key => 'sender_id'
     has_many :recipient_orders, :class_name => 'Order', :foreign_key => 'recipient_id'
 end

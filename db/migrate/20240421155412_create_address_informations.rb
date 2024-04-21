@@ -8,8 +8,7 @@ class CreateAddressInformations < ActiveRecord::Migration[7.1]
       t.integer :postal_code2, null: false
       t.string :city, null: false
       t.string :phone_number
-
-      t.references :user, foreign_key: true, null: true
+      t.references :user, index: true, null: false, foreign_key: true
 
       t.timestamps
     end

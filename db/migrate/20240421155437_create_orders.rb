@@ -7,9 +7,8 @@ class CreateOrders < ActiveRecord::Migration[7.1]
       t.integer :packets_count
       t.text :comments
       t.datetime :collected_at
-
-      t.references :sender, index: true, foreign_key: { to_table: :address_informations }, null: false
-      t.references :recipient, index: true, foreign_key: { to_table: :address_informations }, null: false
+      t.references :user, index: true, null: false, foreign_key: true
+      t.references :recipient_address, index: true, foreign_key: { to_table: :address_informations }
 
       t.timestamps
     end
