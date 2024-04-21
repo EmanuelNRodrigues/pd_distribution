@@ -47,7 +47,7 @@ Devise.setup do |config|
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
   # config.authentication_keys = [:email]
-  config.authentication_keys = [:username]
+  config.authentication_keys = [:email]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -315,12 +315,9 @@ Devise.setup do |config|
   # specify that on every login POST request it should append the JWT token to the ‘Authorization’ header
   # as “Bearer + token” when there’s a successful response sent back, and on a logout DELETE request, the token should be revoked
   config.jwt do |jwt|
-    jwt.secret = Rails.application.credentials.devise_jwt_secret_key! jwt.dispatch_requests = [
-      ['POST', %r{^/login$}]
-    ]
-    jwt.revocation_requests = [
-      ['DELETE', %r{^/logout$}]
-    ]
+    jwt.secret = Rails.application.credentials.devise_jwt_secret_key!
+    jwt.dispatch_requests = [ ['POST', %r{^/login$}] ]
+    jwt.revocation_requests = [ ['DELETE', %r{^/logout$}] ]
     jwt.expiration_time = 30.minutes.to_i
   end
 end

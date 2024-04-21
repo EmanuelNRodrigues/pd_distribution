@@ -4,7 +4,7 @@
 
 class UserSerializer
   class << self
-    def after_create(user, with_jti: false)
+    def single(user, with_jti: false)
       return user.slice(:id, :email, :jti) if with_jti
 
       user.slice(:id, :email)
