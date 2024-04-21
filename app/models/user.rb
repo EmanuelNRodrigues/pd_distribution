@@ -5,6 +5,7 @@
 #  id                     :bigint           not null, primary key
 #  email                  :string           not null
 #  encrypted_password     :string           not null
+#  is_admin               :boolean          default(FALSE)
 #  jti                    :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
@@ -26,6 +27,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
 
+  has_many :address_informations
   validates :email, uniqueness: { case_sensitive: false, message: 'O Email já se encontra atribuído' }
 
   # Method to remove email requirement on Devise
