@@ -36,7 +36,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_21_155437) do
     t.text "comments"
     t.datetime "collected_at"
     t.bigint "user_id", null: false
-    t.bigint "recipient_address_id"
+    t.bigint "recipient_address_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipient_address_id"], name: "index_orders_on_recipient_address_id"

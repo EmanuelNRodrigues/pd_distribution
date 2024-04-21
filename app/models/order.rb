@@ -11,7 +11,7 @@
 #  weight               :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
-#  recipient_address_id :bigint
+#  recipient_address_id :bigint           not null
 #  user_id              :bigint           not null
 #
 # Indexes

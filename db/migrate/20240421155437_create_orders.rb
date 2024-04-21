@@ -8,7 +8,7 @@ class CreateOrders < ActiveRecord::Migration[7.1]
       t.text :comments
       t.datetime :collected_at
       t.references :user, index: true, null: false, foreign_key: true
-      t.references :recipient_address, index: true, foreign_key: { to_table: :address_informations }
+      t.references :recipient_address,  null: false, index: true, foreign_key: { to_table: :address_informations }
 
       t.timestamps
     end
