@@ -12,8 +12,9 @@ Rails.application.routes.draw do
                      }
 
   resources :user do
-    resources :order do
-      resources :recipient, only: %i[show create update]
+    resources :user_address, path: 'address', only: %i[index create destroy update]
+    resources :order, only: %i[index create destroy update] do
+      resources :recipient, only: %i[index create update]
     end
   end
 

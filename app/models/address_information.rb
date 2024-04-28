@@ -23,6 +23,6 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class AddressInformation < ApplicationRecord
-    belongs_to :user, optional: true
-    has_many :recipient_orders, :class_name => 'Order', :foreign_key => 'recipient_id'
+  belongs_to :user, optional: true
+  has_many :recipient_orders, class_name: 'Order', foreign_key: 'recipient_id'
 end
