@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_21_155437) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_08_155412) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,24 +22,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_21_155437) do
     t.integer "postal_code2", null: false
     t.string "city", null: false
     t.string "phone_number"
-    t.bigint "user_id"
+    t.string "addressable_type"
+    t.bigint "addressable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_address_informations_on_user_id"
+    t.index ["addressable_type", "addressable_id"], name: "index_address_informations_on_addressable"
   end
 
   create_table "orders", force: :cascade do |t|
     t.string "weight"
     t.string "payement_value"
     t.string "services"
-    t.integer "packets_count"
+    t.integer "packets_count", null: false
     t.text "comments"
     t.datetime "collected_at"
+    t.integer "status", null: false
     t.bigint "user_id", null: false
-    t.bigint "recipient_address_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["recipient_address_id"], name: "index_orders_on_recipient_address_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -58,7 +58,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_21_155437) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "address_informations", "users"
-  add_foreign_key "orders", "address_informations", column: "recipient_address_id"
   add_foreign_key "orders", "users"
 end

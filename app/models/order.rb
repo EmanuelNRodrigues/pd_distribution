@@ -2,29 +2,32 @@
 #
 # Table name: orders
 #
-#  id                   :bigint           not null, primary key
-#  collected_at         :datetime
-#  comments             :text
-#  packets_count        :integer
-#  payement_value       :string
-#  services             :string
-#  weight               :string
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  recipient_address_id :bigint           not null
-#  user_id              :bigint           not null
+#  id             :bigint           not null, primary key
+#  collected_at   :datetime
+#  comments       :text
+#  packets_count  :integer          not null
+#  payement_value :string
+#  services       :string
+#  status         :integer          not null
+#  weight         :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  user_id        :bigint           not null
 #
 # Indexes
 #
-#  index_orders_on_recipient_address_id  (recipient_address_id)
-#  index_orders_on_user_id               (user_id)
+#  index_orders_on_user_id  (user_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (recipient_address_id => address_informations.id)
 #  fk_rails_...  (user_id => users.id)
 #
 class Order < ApplicationRecord
-  belongs_to :recipient_address, class_name: 'AddressInformation'
+  has_many :addresses, class_name: 'AddressInformation', as: :addressable, dependent: :delete_all
   belongs_to :user
+
+  enum status: [:collecting, :warehouse, :delivering, :delivered, :error]
+
+  validates :status, presence: { message: "Define um estado da encomenda" }
+  validates :packets_count, presence: { message: "Indica o número de volumes" }
 end

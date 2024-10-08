@@ -22,10 +22,16 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
-require "test_helper"
+class OrderSerializer
+  class << self
+    def single(order)
+      order.slice(:id, :weight, :payement_value, :services, :packets_count, :comments, :status)
+    end
 
-class OrderTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+    def collection(orders)
+      orders.map do |order|
+        single(order)
+      end
+    end
+  end
 end
