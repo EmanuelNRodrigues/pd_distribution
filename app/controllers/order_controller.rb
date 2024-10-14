@@ -5,21 +5,21 @@ class OrderController < ApplicationController
 
   # GET    /user/:user_id/order/:id
   def show
-    order = current_user.orders.select(valid_collumns).find(id)
+    order = @user.orders.select(valid_collumns).find(id)
 
     render status: :ok, json: order
   end
 
   # GET    /user/:user_id/order
   def index
-    user_order_list = current_user.orders.select(valid_collumns)
+    user_order_list = @user.orders.select(valid_collumns)
 
     render status: :ok, json: user_order_list
   end
 
   # POST   /user/:user_id/order
   def create
-    create_order_params = permitted_params.merge(user_id: current_user.id)
+    create_order_params = permitted_params.merge(user_id: @user.id)
     new_order = Order.create!(create_order_params)
     data = OrderSerializer.single(new_order)
 
@@ -30,7 +30,7 @@ class OrderController < ApplicationController
 
   # PUT    /user/:user_id/order/:id
   def update
-    order = current_user.orders.find(id)
+    order = @user.orders.find(id)
     order.update!(permitted_params)
 
     render status: :ok, json: { message: 'Encomenda alterada com sucesso' }
@@ -40,7 +40,7 @@ class OrderController < ApplicationController
 
   # DELETE /user/:user_id/order/:id
   def destroy
-    current_user.orders.find(id).destroy
+    @user.orders.find(id).destroy
 
     render status: :ok, json: { message: 'Ordem apagada com sucesso' }
   rescue StandardError

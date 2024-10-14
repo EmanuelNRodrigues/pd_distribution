@@ -31,6 +31,7 @@ class User < ApplicationRecord
   has_many :orders, dependent: :delete_all
   validates :email, uniqueness: { case_sensitive: false, message: 'O Email já se encontra atribuído' }
 
+
   # Method to remove email requirement on Devise
   def email_required?
     false
