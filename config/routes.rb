@@ -18,5 +18,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :user_address, path: 'address'
+    resources :order do
+      resources :recipient
+  end
+
   get 'up' => 'rails/health#show', as: :rails_health_check
 end
